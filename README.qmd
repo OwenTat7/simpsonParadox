@@ -119,13 +119,22 @@ Now let's create a compelling side-by-side comparison that makes Simpson's Parad
 #| warning: false
 #| eval: true
 #| fig-cap: "Side-by-Side Comparison: Simpson's Paradox Visualized"
+#| fig-width: 12
+#| fig-height: 6
+#| out-width: "100%"
 
 # Load patchwork for combining plots
 library(patchwork)
 
 # Create the side-by-side comparison
 comparison_plot <- (plot1 + plot2) +
-  plot_layout(guides = "collect") +
+  plot_layout(
+    ncol = 2,
+    widths = c(1, 1),
+    heights = c(1, 1),
+    guides = "collect",
+    tag_level = "new"
+  ) +
   plot_annotation(
     title = "Simpson's Paradox: The Power of Grouping Variables",
     subtitle = "Left: Overall relationship (misleading) | Right: Species-specific relationships (truth)",
